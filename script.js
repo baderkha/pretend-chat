@@ -9,7 +9,7 @@ socket.emit('new-user', {name})
 
 socket.on('chat-message', data => {
   console.log(data);
-  appendMessage(`${data.name}: ${data.message}`)
+  appendMessage(`${data.profile.name}: ${data.message}`)
 })
 
 socket.on('user-connected', response => {
@@ -29,7 +29,6 @@ messageForm.addEventListener('submit', e => {
 })
 
 searchButton.addEventListener('click',(e)=>{
-    console.log('searching');
     e.preventDefault();
     socket.emit('search-for-room');
 })

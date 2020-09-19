@@ -31,7 +31,7 @@ io.on('connection', socket => {
     const toUser = findUserByRoomId(users,currentUser.roomId,currentUser.id);
     console.log('sending to=>',toUser);
     if (toUser){
-        io.to(toUser.id).emit('chat-message', { message: message, name: users[socket.id] })
+        io.to(toUser.id).emit('chat-message', { message: message, profile: users[socket.id].getProfile() })
         socket.emit('status',{message : "meesage sent => to user"});
         return;
     }
