@@ -13,6 +13,10 @@ class User {
     getProfile(){
         return this.userDetails;
     }
+
+    isChatting(){
+        return !!this.roomId;
+    }
 }
 
 module.exports = User;

@@ -8,8 +8,11 @@ appendMessage('You joined')
 socket.emit('new-user', {name})
 
 socket.on('chat-message', data => {
-  console.log(data);
   appendMessage(`${data.profile.name}: ${data.message}`)
+})
+
+socket.on('connected-to-user',data=>{
+  appendMessage(`${data.name} Has connected ....`);
 })
 
 socket.on('user-connected', response => {
@@ -33,10 +36,26 @@ searchButton.addEventListener('click',(e)=>{
     socket.emit('search-for-room');
 })
 
+socket.on('chat-disconnected',data=>{
+  appendMessage(`User Has Disconnected !!...`);
+});
+
+socket.on('disconnect',()=>{
+  clearMessages();
+  appendMessage('You have Been Disconnected ...');
+})
+
 
 
 function appendMessage(message) {
   const messageElement = document.createElement('div')
   messageElement.innerText = message
   messageContainer.append(messageElement)
+}
+
+function clearMessages() {
+  const parent = messageContainer;
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon main.js"
   },
   "dependencies": {
     "react": "^16.13.1",
