@@ -10,13 +10,13 @@ class ChatSocketRouter extends Router {
     constructor(chatController,port,logging=false){
         super(chatController,port,logging);
         this.io = io(this.port);
+        this.controller.setSocketIOConnection(this.io);
         if (this.logging){
             this.controller.enableLogging();
         }
     }
     route(){
         this.io.on('connection',socket=>{
-            this.controller.setSocketIOConnection(this.io);
             // socket routes go here
             socket.on('new-user',this.controller.onNewUser.bind(this.controller,socket));
             socket.on('search-for-room',this.controller.onSearchForRoom.bind(this.controller,socket));
